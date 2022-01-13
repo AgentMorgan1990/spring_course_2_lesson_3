@@ -3,22 +3,23 @@ create table products
     id         bigserial primary key,
     title      varchar(255),
     price      int,
+    product_category      varchar(255),
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp
 );
 
-insert into products (title, price)
-values ('Milk', 100),
-       ('Bread', 80),
-       ('Cheese', 90),
-       ('Cheese2', 90),
-       ('Cheese3', 90),
-       ('Cheese4', 90),
-       ('Cheese5', 90),
-       ('Cheese6', 90),
-       ('Cheese7', 90),
-       ('Cheese8', 90),
-       ('Cheese9', 90);
+insert into products (title, price,product_category)
+values ('Milk', 100,'Meal'),
+       ('Bread', 80,'Meal'),
+       ('Cheese', 90,'Meal'),
+       ('Cheese2', 90,'Meal'),
+       ('Cheese3', 90,'Meal'),
+       ('Car1', 90,'Vehicles'),
+       ('Car2', 90,'Vehicles'),
+       ('Car3', 90,'Vehicles'),
+       ('Track1', 90,'Vehicles'),
+       ('Track2', 90,'Vehicles'),
+       ('Track3', 90,'Vehicles');
 
 create table users
 (
