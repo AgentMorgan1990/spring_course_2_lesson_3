@@ -2,7 +2,7 @@ package com.geekbrains.spring.web.controllers;
 
 import com.geekbrains.spring.web.converters.ProductConverter;
 import com.geekbrains.spring.web.dto.ProductDto;
-import com.geekbrains.spring.web.entities.Product;
+import com.geekbrains.spring.web.entities.ProductEntity;
 import com.geekbrains.spring.web.exceptions.ResourceNotFoundException;
 import com.geekbrains.spring.web.services.ProductsService;
 import com.geekbrains.spring.web.validators.ProductValidator;
@@ -35,23 +35,23 @@ public class ProductsController {
 
     @GetMapping("/{id}")
     public ProductDto getProductById(@PathVariable Long id) {
-        Product product = productsService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found, id: " + id));
-        return productConverter.entityToDto(product);
+        ProductEntity productEntity = productsService.findById(id).orElseThrow(() -> new ResourceNotFoundException("ProductEntity not found, id: " + id));
+        return productConverter.entityToDto(productEntity);
     }
 
     @PostMapping
     public ProductDto saveNewProduct(@RequestBody ProductDto productDto) {
         productValidator.validate(productDto);
-        Product product = productConverter.dtoToEntity(productDto);
-        product = productsService.save(product);
-        return productConverter.entityToDto(product);
+        ProductEntity productEntity = productConverter.dtoToEntity(productDto);
+        productEntity = productsService.save(productEntity);
+        return productConverter.entityToDto(productEntity);
     }
 
     @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
         productValidator.validate(productDto);
-        Product product = productsService.update(productDto);
-        return productConverter.entityToDto(product);
+        ProductEntity productEntity = productsService.update(productDto);
+        return productConverter.entityToDto(productEntity);
     }
 
     @DeleteMapping("/{id}")
